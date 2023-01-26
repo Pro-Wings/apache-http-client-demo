@@ -28,6 +28,7 @@ public class Java11HttpClientDemo2 {
 		
 		System.out.println(response.body());
 		System.out.println(response.statusCode());
+		System.out.println("git test");
 	}
 
 }
