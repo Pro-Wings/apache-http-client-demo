@@ -16,7 +16,7 @@ public class Java11HttpClientDemo {
 		//Lets prepare the HttpRequest
 		
 		HttpRequest getReq = HttpRequest.newBuilder()
-				.uri(new URI("http://localhost:8080/students/30"))
+				.uri(new URI("http://localhost:8080/my-first-rest-api-using-spring-mvc/students/11"))
 				.build();
 		
 		HttpClient client = HttpClient.newBuilder()

@@ -18,29 +18,39 @@ public class ApacheHttpClientDemo {
 
 	public static void main(String[] args) throws ClientProtocolException, IOException{
 		
-		
-		//http://localhost:8080/students/30
+
+		//http://localhost:8080/my-first-rest-api-using-spring-mvc/prowings/employees/5
 		
 		CloseableHttpClient client = HttpClients.createDefault();
 		
-		HttpGet get = new HttpGet("http://localhost:8080/students/30");
+//		HttpGet get = new HttpGet("http://localhost:8080/my-first-rest-api-using-spring-mvc/prowings/employees/8");
+//		get.setHeader(HttpHeaders.ACCEPT, "application/json");
+//		get.setHeader("company", "prowings");
+//		CloseableHttpResponse response = client.execute(get);
+//
+//		String res = EntityUtils.toString(response.getEntity());
+//
+//		System.out.println(res);
 		
-		CloseableHttpResponse response = client.execute(get);
+		HttpPost post = new HttpPost("http://localhost:8080/my-first-rest-api-using-spring-mvc/prowings/employees");
 
-		String res = EntityUtils.toString(response.getEntity());
+		final String json = "{ \"name\":\"Sachin555\",\"address\":\"Kolhapur\",\"salary\":\"99999\"}";
 
-		System.out.println(res);
-		
-		HttpPost post = new HttpPost("http://localhost:8080/students");
-		//    "{ "roll": 30,"name": "ABC","address": "Mumbai" }"
-		final String json = "{\"roll\":40,\"name\":\"Sham\",\"address\":\"Mumbai\"}";
 		final StringEntity entity = new StringEntity(json);
 		post.setHeader("Content-type", "application/json");
+		post.setHeader(HttpHeaders.ACCEPT, "application/json");
+
 		post.setEntity(entity);
 		
 		CloseableHttpResponse postResponse = client.execute(post);
 		String postRes = EntityUtils.toString(postResponse.getEntity());
 		System.out.println(postRes);
+		System.out.println("Response Code : "+postResponse.getStatusLine().getStatusCode());
+		System.out.println("Response Headers : ");
+		Header[] headers = postResponse.getAllHeaders();
+		for (Header header : headers) {
+			System.out.println(header.getName() + " : " + header.getValue());
+		}
 
 	}
 		
